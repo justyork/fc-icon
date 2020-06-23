@@ -1,5 +1,5 @@
 // Register service worker to control making site work offline
-
+console.log(navigator)
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/pwa-examples/a2hs/sw.js')
@@ -10,9 +10,10 @@ if('serviceWorker' in navigator) {
 
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
-// addBtn.style.display = 'none';
-
+addBtn.style.display = 'block';
+console.log('start')
 window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('listen')
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
   // Stash the event so it can be triggered later.
@@ -21,8 +22,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
   addBtn.style.display = 'block';
 
   addBtn.addEventListener('click', (e) => {
+      console.log('click')
     // hide our user interface that shows our A2HS button
-    addBtn.style.display = 'none';
+    // addBtn.style.display = 'none';
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
